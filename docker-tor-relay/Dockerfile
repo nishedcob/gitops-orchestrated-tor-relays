@@ -24,16 +24,17 @@ ExitRelay EXIT_RELAY\n\
 SocksPort SOCKS_PORT\n\
 ControlSocket CONTROL_SOCKET\n\
 ContactInfo CONTACT_INFO\n\
-# FamilyName FAMILY_NAME\n\
+''#'$' FamilyName FAMILY_NAME\n\
+MaxMemInQueues MAX_MEMORY\n\
 ' | tee /etc/tor/torrc
 
 RUN /usr/bin/install -Z -m 02755 -o debian-tor -g debian-tor -d /var/run/tor
 
-ENV RELAY_NICKNAME="tor_relay_docker" TOR_PORT="443" EXIT_RELAY="0" \
-  SOCKS_PORT="0" CONTROL_SOCKET="0" CONTACT_INFO=""
+ENV RELAY_NICKNAME="torrelaydocker" TOR_PORT="443" EXIT_RELAY="0" \
+  SOCKS_PORT="0" CONTROL_SOCKET="0" CONTACT_INFO="" MAX_MEMORY="256"
 
 COPY start.sh /usr/bin/start.sh
 
 RUN chmod +x -c /usr/bin/start.sh
 
-ENTRYPOINT ['/usr/bin/start.sh']
+ENTRYPOINT "/usr/bin/start.sh"

@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: torrelay2
+  name: torrelay2
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: torrelay2
+    spec:
+      containers:
+      - env:
+        - name: RELAY_NICKNAME
+          value: torrelay2
+        image: nishedcob/tor-relay:test
+        name: torrelay2
+        resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,17 @@
+
+---
+
+version: '3'
+services:
+  torrelay1:
+    image: nishedcob/tor-relay:test
+    environment:
+      RELAY_NICKNAME: "torrelay1"
+  torrelay2:
+    image: nishedcob/tor-relay:test
+    environment:
+      RELAY_NICKNAME: "torrelay2"
+  torrelay3:
+    image: nishedcob/tor-relay:test
+    environment:
+      RELAY_NICKNAME: "torrelay3"

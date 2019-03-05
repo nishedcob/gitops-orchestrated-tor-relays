@@ -1,0 +1,3 @@
+[submodule "kubernetes/tor-controller"]
+	path = kubernetes/tor-controller
+	url = git@github.com:nishedcob/tor-controller.git

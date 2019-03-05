@@ -11,3 +11,6 @@ komposed: docker-compose.yaml
 	kompose convert
 	@mv -v torrelay*-*.yaml kubernetes/gitops/
 	@touch $@
+
+k8s_ops: komposed
+	cd kubernetes; make; cd ..

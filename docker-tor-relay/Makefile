@@ -1,16 +1,19 @@
 
+TAGGED_TEST_IMAGE="nishedcob/tor-relay:test"
+CONTAINER_NAME="tor-relay"
+
 dockerized: Dockerfile start.sh
-	docker build -t nishedcob/tor-relay:test .
+	docker build -t $(TAGGED_TEST_IMAGE) .
 	@touch $@
 
 run: dockerized
 	@touch $@
-	docker run --rm --name tor-relay nishedcob/tor-relay:test || rm -v $@ || true
+	docker run --rm --name $(CONTAINER_NAME) $(TAGGED_TEST_IMAGE) || rm -v $@ || true
 
 stop:
-	(docker ps | grep "tor-relay" && docker stop tor-relay && sleep 10s) || (docker ps | grep "tor-relay" || true)
+	(docker ps | grep $(CONTAINER_NAME) && docker stop $(CONTAINER_NAME) && sleep 10s) || (docker ps | grep $(CONTAINER_NAME) || true)
 	@rm -v run || true
 
 clean: stop
-	docker rmi nishedcob/tor-relay:test || true
+	docker rmi $(TAGGED_TEST_IMAGE) || true
 	@rm -v run dockerized || true
